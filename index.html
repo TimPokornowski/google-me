@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Breach</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    overflow: hidden;
+  }
+  #terminal {
+    padding: 30px;
+    font-size: 1.2rem;
+    white-space: pre-line;
+  }
+  .target {
+    display: none;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    max-width: 300px;
+  }
+</style>
+</head>
+<body>
+<div id="terminal"></div>
+<img class="target" src="target1.jpg">
+<img class="target" src="target2.jpg">
+<img class="target" src="target3.jpg">
+<script>
+const lines = [
+  'SYSTEM BREACH DETECTED',
+  'ACCESSING FILES...',
+  'IDENTITY CONFIRMED',
+  'TRACKING LOCATION...',
+  'FINALIZING...' 
+];
+
+let i = 0;
+const terminal = document.getElementById('terminal');
+const targets = document.querySelectorAll('.target');
+
+function typeLine() {
+  if (i < lines.length) {
+    terminal.innerHTML += lines[i] + '\n';
+    i++;
+    setTimeout(typeLine, 700);
+  } else {
+    terminal.innerHTML += '\n😂 YOU GOT PRANKED';
+  }
+}
+
+typeLine();
+
+// Flash images in sequence
+let imgIndex = 0;
+setInterval(() => {
+  targets.forEach((img, idx) => img.style.display = 'none');
+  targets[imgIndex].style.display = 'block';
+  imgIndex = (imgIndex + 1) % targets.length;
+}, 500);
+</script>
+</body>
+</html>
